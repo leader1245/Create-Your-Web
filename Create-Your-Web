@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>[YOUR BUSINESS NAME]</title><!-- Title is set per language in the TEXT section at the bottom -->
+<meta name="description" content="Professional websites delivered fast at fair prices. Message us on WhatsApp for a free quote.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1B2D'/%3E%3Cpath d='M9 11l5 5-5 5M17 21h6' stroke='%23FFC233' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- Optional web fonts (Arabic uses Cairo). Falls back to system fonts if blocked. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Cairo:wght@400;600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+/* Apply saved (or system) theme and language BEFORE the page paints, to avoid a flash. */
+(function(){
+  var t=null,l=null;
+  try{t=localStorage.getItem("theme");l=localStorage.getItem("lang");}catch(e){}
+  if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+  if(!l)l=(navigator.language||"").toLowerCase().indexOf("ar")===0?"ar":"en";
+  var d=document.documentElement;
+  d.setAttribute("data-theme",t);d.lang=l;d.dir=l==="ar"?"rtl":"ltr";
+})();
+</script>
+
+<style>
+:root{
+  --bg:#FFFFFF; --text:#0F1B2D; --soft:#44546A; --mist:#F2F5F9; --surface:#FFFFFF;
+  --line:#DCE3EC; --field:#8A97A8; --deep:#0F1B2D; --deep-text:#FFFFFF; --deep-soft:#D5DDE8;
+  --wa:#0B7A3E; --wa-dark:#085F30; --zap:#FFC233; --accent-link:#0B7A3E;
+  --radius:14px; color-scheme:light;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --text:#E8EEF6; --soft:#A9B6C8; --mist:#101A2C; --surface:#152038;
+  --line:#26344D; --field:#6F809A; --deep:#16233B; --deep-text:#FFFFFF; --deep-soft:#C3CEDD;
+  --accent-link:#4ADE80; color-scheme:dark;
+}
+:root:lang(ar){--display:"Cairo","Segoe UI",Tahoma,sans-serif;--body:"Cairo","Segoe UI",Tahoma,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--body);font-size:1.0625rem;line-height:1.6;color:var(--text);background:var(--bg);transition:background .25s,color .25s}
+:lang(ar) body{line-height:1.8}
+img,svg{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;letter-spacing:-.02em}
+:lang(ar) h1,:lang(ar) h2,:lang(ar) h3{letter-spacing:0;line-height:1.35}
+h1{font-size:clamp(2.3rem,7.5vw,4.3rem);font-weight:800}
+h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800}
+h3{font-size:1.3rem;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--zap);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+section{padding:clamp(3.5rem,9vw,6rem) 0}
+.lead{font-size:1.2rem;color:var(--soft);max-width:34rem}
+.skip{position:absolute;inset-inline-start:-999px;top:0;background:var(--zap);color:#0F1B2D;padding:.6rem 1rem;z-index:100}
+.skip:focus{inset-inline-start:0}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:.8rem 1.5rem;border-radius:999px;font:600 1.05rem var(--body);text-decoration:none;border:0;cursor:pointer;transition:background .2s,transform .15s}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:var(--wa-dark)}
+.btn:active{transform:scale(.98)}
+.btn-sm{min-height:44px;padding:.5rem 1.1rem;font-size:.98rem}
+.chip{min-height:44px;min-width:44px;padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--text);font:600 .95rem var(--body);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.chip:hover{border-color:var(--text)}
+.chip svg{width:20px;height:20px}
+.ic-sun{display:none}
+:root[data-theme="dark"] .ic-sun{display:block}
+:root[data-theme="dark"] .ic-moon{display:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:64px}
+.tools{display:flex;align-items:center;gap:.5rem}
+.logo{font:800 1.25rem var(--display);text-decoration:none;letter-spacing:-.02em;margin-inline-end:auto}
+:lang(ar) .logo{letter-spacing:0}
+
+/* Hero */
+.hero{padding-top:clamp(2.5rem,7vw,5rem);background:linear-gradient(180deg,var(--mist),var(--bg))}
+.hero-grid{display:grid;gap:2.5rem;align-items:center}
+.hero h1 span{background:linear-gradient(transparent 62%,var(--zap) 62% 92%,transparent 92%);color:var(--text)}
+:root[data-theme="dark"] .hero h1 span{background:linear-gradient(transparent 62%,rgba(255,194,51,.45) 62% 92%,transparent 92%)}
+.hero .lead{margin:1.25rem 0 1.75rem}
+.hero-note{margin-top:1rem;font-size:.95rem;color:var(--soft)}
+.mock{background:var(--deep);border-radius:var(--radius);padding:.9rem;box-shadow:0 24px 50px -24px rgba(0,0,0,.55)}
+.mock-top{display:flex;gap:.4rem;padding:.2rem .3rem .8rem}
+.mock-top i{width:11px;height:11px;border-radius:50%;background:#3B4B63}
+.mock-body{background:var(--surface);border-radius:8px;padding:1.2rem;display:grid;gap:.7rem}
+.m{background:var(--line);border-radius:6px;height:12px}
+.m.hd{height:26px;width:70%;background:var(--text)}
+.m.s{width:85%}.m.xs{width:55%}
+.m.cta{height:34px;width:42%;background:var(--wa);border-radius:999px;margin-top:.4rem}
+.mock-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.5rem}
+.mock-row b{height:64px;border-radius:8px;background:var(--mist);border:1px solid var(--line)}
+
+/* Selling points */
+.two{display:grid;gap:1.25rem;margin-top:2.25rem}
+.big{border-radius:var(--radius);padding:2rem 1.75rem}
+.big p{margin-top:.8rem;max-width:30rem}
+.big.fast{background:var(--deep);color:#fff;border:1px solid transparent}
+:root[data-theme="dark"] .big.fast{border-color:var(--line)}
+.big.fast p{color:var(--deep-soft)}
+.big.cheap{background:var(--zap);color:#0F1B2D}
+.big svg{width:44px;height:44px;margin-bottom:1rem}
+
+
+.alt{background:var(--mist)}
+
+/* Services */
+.cards{display:grid;gap:1rem;margin-top:2.25rem;grid-template-columns:1fr}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem}
+.card p{color:var(--soft);margin-top:.4rem}
+
+/* Steps (a real sequence, so numbered) */
+.steps{list-style:none;padding:0;margin:2.25rem 0 0;display:grid;gap:1.25rem;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:3rem;height:3rem;border-radius:50%;background:var(--deep);color:var(--zap);font:800 1.3rem var(--display)}
+.steps p{color:var(--soft)}
+
+/* Quote form */
+.quote{background:var(--deep);color:var(--deep-text)}
+.quote-grid{display:grid;gap:2.5rem}
+.quote .lead{color:var(--deep-soft);margin-top:1rem}
+form{background:var(--surface);color:var(--text);border-radius:var(--radius);padding:1.5rem;display:grid;gap:1rem}
+label{font-weight:600;display:grid;gap:.35rem;font-size:1rem}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--text);padding:.75rem .9rem;border:1.5px solid var(--field);border-radius:10px;background:var(--bg);width:100%;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+.hint{font-size:.9rem;color:var(--soft);text-align:center}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:1rem 0}
+summary{cursor:pointer;font:600 1.1rem var(--display);list-style:none;display:flex;justify-content:space-between;gap:1rem;min-height:44px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--accent-link)}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--soft);margin-top:.5rem;max-width:42rem}
+.faq{max-width:760px}
+
+/* Final CTA + footer */
+.final{text-align:center}
+.final .lead{margin:1rem auto 1.75rem}
+footer{background:var(--deep);color:var(--deep-soft);padding:2rem 0 6rem;font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem}
+footer a{color:#fff}
+
+/* Floating WhatsApp button (mobile) */
+.float{position:fixed;inset-inline-end:1rem;bottom:1rem;z-index:60;box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+.hide-sm{display:none}
+
+@media (min-width:560px){.hide-sm{display:inline-flex}}
+@media (min-width:760px){
+  .hero-grid{grid-template-columns:1.15fr .85fr}
+  .two{grid-template-columns:1fr 1fr}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .quote-grid{grid-template-columns:1fr 1fr;align-items:center}
+  footer{padding-bottom:2rem}
+  .float{display:none}
+}
+@media (min-width:1000px){.cards{grid-template-columns:repeat(4,1fr)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.2-.4.7-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.200c0 1.300.9 2.600 1 2.700s1.800 2.800 4.400 3.900c1.600.7 2.200.7 3 .6.5-.1 1.500-.6 1.700-1.200s.2-1.100.2-1.200-.2-.2-.4-.3Z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <!-- BUSINESS NAME (also in footer and the TEXT section at the bottom) -->
+    <a class="logo" href="#top">[YOUR BUSINESS NAME]</a>
+    <div class="tools">
+      <button class="chip" id="lang-btn" type="button">العربية</button>
+      <button class="chip" id="theme-btn" type="button" aria-label="Switch theme">
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800Z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg>
+      </button>
+      <a class="btn btn-wa btn-sm hide-sm" data-wa href="https://wa.me/[YOUR_NUMBER]?text=Hi%2C%20I%27m%20interested%20in%20getting%20a%20website.%20Can%20you%20send%20me%20a%20quote%3F">
+        <svg aria-hidden="true"><use href="#wa"/></svg><span data-i18n="nav_wa">WhatsApp us</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 data-i18n-html="h1">Your website, built <span>fast</span> and priced fairly.</h1>
+        <p class="lead" data-i18n="lead">We design and launch professional websites for businesses that need to get online without long waits or big bills.</p>
+        <a class="btn btn-wa" data-wa href="https://wa.me/[YOUR_NUMBER]?text=Hi%2C%20I%27m%20interested%20in%20getting%20a%20website.%20Can%20you%20send%20me%20a%20quote%3F">
+          <svg aria-hidden="true"><use href="#wa"/></svg><span data-i18n="cta">Get a free quote on WhatsApp</span>
+        </a>
+        <p class="hero-note" data-i18n="note">Message us and get a reply from a real person.</p>
+      </div>
+      <div class="mock" aria-hidden="true">
+        <div class="mock-top"><i></i><i></i><i></i></div>
+        <div class="mock-body">
+          <span class="m hd"></span><span class="m s"></span><span class="m xs"></span>
+          <span class="m cta"></span>
+          <div class="mock-row"><b></b><b></b><b></b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="why">
+    <div class="wrap">
+      <h2 id="why" data-i18n="why">Two things you can count on</h2>
+      <div class="two">
+        <article class="big fast">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFC233" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+          <h3 data-i18n="fast_t">Fast delivery</h3>
+          <p data-i18n="fast_p">We move quickly so your site is live while your business still needs it. Ask us about timing for your project.</p>
+        </article>
+        <article class="big cheap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.600 13.400 13.400 20.600a2 2 0 0 1-2.800 0L3 13V3h10l7.600 7.600a2 2 0 0 1 0 2.800Z"/><circle cx="7.500" cy="7.500" r="1.200"/></svg>
+          <h3 data-i18n="cheap_t">Reasonable prices</h3>
+          <p data-i18n="cheap_p">Quality websites at rates small businesses can afford. You get a clear quote before any work starts.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="alt" aria-labelledby="get">
+    <div class="wrap">
+      <h2 id="get" data-i18n="get_h">What you get</h2>
+      <div class="cards">
+        <div class="card"><h3 data-i18n="c1t">Mobile-friendly</h3><p data-i18n="c1p">Looks and works great on phones, tablets, and desktops.</p></div>
+        <div class="card"><h3 data-i18n="c2t">Professional design</h3><p data-i18n="c2p">A clean, modern look that builds trust with your customers.</p></div>
+        <div class="card"><h3 data-i18n="c3t">Easy to contact</h3><p data-i18n="c3p">Visitors can reach you in one tap, including by WhatsApp.</p></div>
+        <div class="card"><h3 data-i18n="c4t">Built for you</h3><p data-i18n="c4p">Made around your business, not copied from a generic template.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how" data-i18n="how_h">How it works</h2>
+      <ol class="steps">
+        <li><div><h3 data-i18n="s1t">Message us</h3><p data-i18n="s1p">Tell us about your business and what you need on WhatsApp.</p></div></li>
+        <li><div><h3 data-i18n="s2t">Get your quote</h3><p data-i18n="s2p">We reply with a clear price and a timeline for your project.</p></div></li>
+        <li><div><h3 data-i18n="s3t">We build, you approve</h3><p data-i18n="s3p">You review the site, ask for changes, and we launch it.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="quote" id="quote" aria-labelledby="q">
+    <div class="wrap quote-grid">
+      <div>
+        <h2 id="q" data-i18n="q_h">Request your quote</h2>
+        <p class="lead" data-i18n="q_p">Fill in a few details and we will open WhatsApp with your message ready to send.</p>
+      </div>
+      <form id="quote-form">
+        <label><span data-i18n="f_name">Your name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label><span data-i18n="f_type">What do you need?</span>
+          <select name="type" required>
+            <option value="" data-i18n="o0">Choose one</option>
+            <option data-i18n="o1">A new website</option>
+            <option data-i18n="o2">A redesign of my current site</option>
+            <option data-i18n="o3">An online store</option>
+            <option data-i18n="o4">Not sure yet</option>
+          </select>
+        </label>
+        <label><span data-i18n="f_det">Tell us about your business (optional)</span>
+          <textarea name="details"></textarea>
+        </label>
+        <button class="btn btn-wa" type="submit"><svg aria-hidden="true"><use href="#wa"/></svg><span data-i18n="f_btn">Send on WhatsApp</span></button>
+        <p class="hint" data-i18n="f_hint">This opens WhatsApp. Nothing is stored on this page.</p>
+      </form>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq">
+    <div class="wrap faq">
+      <h2 id="faq" data-i18n="faq_h">Common questions</h2>
+      <div style="margin-top:1.5rem">
+        <details><summary data-i18n="fq1">How much will it cost?</summary><p data-i18n="fa1">It depends on what you need. Message us and we will send a clear quote before you commit to anything.</p></details>
+        <details><summary data-i18n="fq2">How long will it take?</summary><p data-i18n="fa2">We work fast. We will give you a timeline in your quote once we know the details of your project.</p></details>
+        <details><summary data-i18n="fq3">Do I need to know anything technical?</summary><p data-i18n="fa3">No. Tell us about your business in plain words and we handle the rest.</p></details>
+        <details><summary data-i18n="fq4">Can I ask for changes?</summary><p data-i18n="fa4">Yes. You review the site before launch and we adjust it with you.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt final" aria-labelledby="final">
+    <div class="wrap">
+      <h2 id="final" data-i18n="fin_h">Ready to get online?</h2>
+      <p class="lead" data-i18n="fin_p">Send us a message. It takes less than a minute.</p>
+      <a class="btn btn-wa" data-wa href="https://wa.me/[YOUR_NUMBER]?text=Hi%2C%20I%27m%20interested%20in%20getting%20a%20website.%20Can%20you%20send%20me%20a%20quote%3F">
+        <svg aria-hidden="true"><use href="#wa"/></svg><span data-i18n="fin_btn">Chat on WhatsApp</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> [YOUR BUSINESS NAME]</span>
+    <!-- Optional: delete this line if you do not want to show an email -->
+    <a href="mailto:[YOUR_EMAIL]">[YOUR_EMAIL]</a>
+  </div>
+</footer>
+
+<a class="btn btn-wa float" data-wa data-i18n-aria="float" aria-label="Chat on WhatsApp" href="https://wa.me/[YOUR_NUMBER]?text=Hi%2C%20I%27m%20interested%20in%20getting%20a%20website.%20Can%20you%20send%20me%20a%20quote%3F">
+  <svg aria-hidden="true"><use href="#wa"/></svg><span data-i18n="float_t">WhatsApp</span>
+</a>
+
+<script>
+/* ============================================================
+   1) WHATSAPP NUMBER  (Find & Replace [YOUR_NUMBER] in this whole file)
+   International format, digits only: no "+", spaces or dashes.
+   Example: 201001234567
+============================================================= */
+var NUMBER = "[YOUR_NUMBER]";
+
+/* ============================================================
+   2) TEXT in both languages. Edit any wording here.
+   Keep the quote marks and commas. {NAME} etc. are not used.
+============================================================= */
+var T = {
+en:{
+ title:"[YOUR BUSINESS NAME] | Fast, affordable websites",
+ desc:"Professional websites delivered fast at fair prices. Message us on WhatsApp for a free quote.",
+ greet:"Hi, I'm interested in getting a website. Can you send me a quote?",
+ msg_a:"Hi, my name is ", msg_b:". I need: ", msg_c:"About my business: ", msg_d:"Can you send me a quote?",
+ skip:"Skip to content", nav_wa:"WhatsApp us", float:"Chat on WhatsApp", float_t:"WhatsApp",
+ theme_to_dark:"Switch to dark mode", theme_to_light:"Switch to light mode",
+ h1:"Your website, built <span>fast</span> and priced fairly.",
+ lead:"We design and launch professional websites for businesses that need to get online without long waits or big bills.",
+ cta:"Get a free quote on WhatsApp", note:"Message us and get a reply from a real person.",
+ why:"Two things you can count on",
+ fast_t:"Fast delivery", fast_p:"We move quickly so your site is live while your business still needs it. Ask us about timing for your project.",
+ cheap_t:"Reasonable prices", cheap_p:"Quality websites at rates small businesses can afford. You get a clear quote before any work starts.",
+ get_h:"What you get",
+ c1t:"Mobile-friendly", c1p:"Looks and works great on phones, tablets, and desktops.",
+ c2t:"Professional design", c2p:"A clean, modern look that builds trust with your customers.",
+ c3t:"Easy to contact", c3p:"Visitors can reach you in one tap, including by WhatsApp.",
+ c4t:"Built for you", c4p:"Made around your business, not copied from a generic template.",
+ how_h:"How it works",
+ s1t:"Message us", s1p:"Tell us about your business and what you need on WhatsApp.",
+ s2t:"Get your quote", s2p:"We reply with a clear price and a timeline for your project.",
+ s3t:"We build, you approve", s3p:"You review the site, ask for changes, and we launch it.",
+ q_h:"Request your quote", q_p:"Fill in a few details and we will open WhatsApp with your message ready to send.",
+ f_name:"Your name", f_type:"What do you need?", o0:"Choose one", o1:"A new website", o2:"A redesign of my current site", o3:"An online store", o4:"Not sure yet",
+ f_det:"Tell us about your business (optional)", f_btn:"Send on WhatsApp", f_hint:"This opens WhatsApp. Nothing is stored on this page.",
+ faq_h:"Common questions",
+ fq1:"How much will it cost?", fa1:"It depends on what you need. Message us and we will send a clear quote before you commit to anything.",
+ fq2:"How long will it take?", fa2:"We work fast. We will give you a timeline in your quote once we know the details of your project.",
+ fq3:"Do I need to know anything technical?", fa3:"No. Tell us about your business in plain words and we handle the rest.",
+ fq4:"Can I ask for changes?", fa4:"Yes. You review the site before launch and we adjust it with you.",
+ fin_h:"Ready to get online?", fin_p:"Send us a message. It takes less than a minute.", fin_btn:"Chat on WhatsApp"
+},
+ar:{
+ title:"[YOUR BUSINESS NAME] | مواقع إلكترونية سريعة وبأسعار مناسبة",
+ desc:"مواقع إلكترونية احترافية تُسلَّم بسرعة وبأسعار عادلة. راسلنا على واتساب للحصول على عرض سعر مجاني.",
+ greet:"مرحباً، أرغب في إنشاء موقع إلكتروني. هل يمكنك إرسال عرض سعر؟",
+ msg_a:"مرحباً، اسمي ", msg_b:". أحتاج إلى: ", msg_c:"عن نشاطي: ", msg_d:"هل يمكنك إرسال عرض سعر؟",
+ skip:"انتقل إلى المحتوى", nav_wa:"راسلنا على واتساب", float:"تحدث معنا على واتساب", float_t:"واتساب",
+ theme_to_dark:"التبديل إلى الوضع الداكن", theme_to_light:"التبديل إلى الوضع الفاتح",
+ h1:"موقعك الإلكتروني، يُبنى <span>بسرعة</span> وبسعر عادل.",
+ lead:"نصمم ونطلق مواقع احترافية للأعمال التي تريد الظهور على الإنترنت دون انتظار طويل أو تكاليف مرهقة.",
+ cta:"احصل على عرض سعر مجاني عبر واتساب", note:"راسلنا وسيرد عليك شخص حقيقي.",
+ why:"ميزتان يمكنك الاعتماد عليهما",
+ fast_t:"تسليم سريع", fast_p:"نعمل بسرعة ليكون موقعك جاهزاً وقت حاجتك إليه. اسألنا عن المدة المناسبة لمشروعك.",
+ cheap_t:"أسعار مناسبة", cheap_p:"مواقع بجودة عالية وبأسعار تناسب الأعمال الصغيرة. تحصل على عرض سعر واضح قبل بدء أي عمل.",
+ get_h:"ماذا ستحصل عليه",
+ c1t:"متوافق مع الجوال", c1p:"يظهر ويعمل بشكل ممتاز على الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر.",
+ c2t:"تصميم احترافي", c2p:"مظهر عصري ونظيف يبني ثقة عملائك.",
+ c3t:"سهولة التواصل", c3p:"يستطيع الزوار التواصل معك بنقرة واحدة، بما في ذلك عبر واتساب.",
+ c4t:"مصمم لأجلك", c4p:"يُبنى حول نشاطك، وليس نسخة من قالب جاهز.",
+ how_h:"كيف نعمل",
+ s1t:"راسلنا", s1p:"أخبرنا عن نشاطك وما تحتاجه عبر واتساب.",
+ s2t:"احصل على عرض السعر", s2p:"نرد عليك بسعر واضح ومدة تنفيذ لمشروعك.",
+ s3t:"نبني وأنت توافق", s3p:"تراجع الموقع وتطلب التعديلات، ثم نطلقه.",
+ q_h:"اطلب عرض السعر", q_p:"املأ بعض التفاصيل وسنفتح واتساب برسالتك جاهزة للإرسال.",
+ f_name:"اسمك", f_type:"ماذا تحتاج؟", o0:"اختر", o1:"موقع جديد", o2:"إعادة تصميم موقعي الحالي", o3:"متجر إلكتروني", o4:"لست متأكداً بعد",
+ f_det:"أخبرنا عن نشاطك (اختياري)", f_btn:"أرسل عبر واتساب", f_hint:"سيفتح هذا واتساب. لا يتم حفظ أي بيانات في هذه الصفحة.",
+ faq_h:"أسئلة شائعة",
+ fq1:"كم ستكون التكلفة؟", fa1:"تعتمد على ما تحتاجه. راسلنا وسنرسل لك عرض سعر واضحاً قبل أن تلتزم بأي شيء.",
+ fq2:"كم يستغرق التنفيذ؟", fa2:"نعمل بسرعة. سنحدد لك مدة التنفيذ في عرض السعر بعد معرفة تفاصيل مشروعك.",
+ fq3:"هل أحتاج إلى معرفة تقنية؟", fa3:"لا. أخبرنا عن نشاطك بكلمات بسيطة ونتولى الباقي.",
+ fq4:"هل يمكنني طلب تعديلات؟", fa4:"نعم. تراجع الموقع قبل الإطلاق ونعدّله معك.",
+ fin_h:"جاهز للظهور على الإنترنت؟", fin_p:"أرسل لنا رسالة. لن يستغرق الأمر أكثر من دقيقة.", fin_btn:"تحدث معنا على واتساب"
+}};
+
+/* ---------- Logic (no need to edit below) ---------- */
+var root = document.documentElement;
+function lang(){ return root.lang === "ar" ? "ar" : "en"; }
+function waLink(text){ return "https://wa.me/" + NUMBER + "?text=" + encodeURIComponent(text); }
+function save(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+function applyLang(){
+  var l = lang(), d = T[l];
+  root.dir = l === "ar" ? "rtl" : "ltr";
+  document.title = d.title;
+  document.querySelector('meta[name="description"]').content = d.desc;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = d[el.dataset.i18n]; });
+  document.querySelectorAll("[data-i18n-html]").forEach(function(el){ el.innerHTML = d[el.dataset.i18nHtml]; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function(el){ el.setAttribute("aria-label", d[el.dataset.i18nAria]); });
+  document.querySelectorAll("[data-wa]").forEach(function(a){ a.href = waLink(d.greet); });
+  var lb = document.getElementById("lang-btn");     // button shows the OTHER language
+  lb.textContent = l === "ar" ? "English" : "العربية";
+  lb.lang = l === "ar" ? "en" : "ar";
+  applyTheme();
+}
+function applyTheme(){
+  var dark = root.getAttribute("data-theme") === "dark";
+  var b = document.getElementById("theme-btn");
+  b.setAttribute("aria-label", dark ? T[lang()].theme_to_light : T[lang()].theme_to_dark);
+  b.setAttribute("aria-pressed", dark);
+  document.querySelector('meta[name="theme-color"]') && 0;
+}
+
+document.getElementById("lang-btn").addEventListener("click", function(){
+  root.lang = lang() === "ar" ? "en" : "ar"; save("lang", root.lang); applyLang();
+});
+document.getElementById("theme-btn").addEventListener("click", function(){
+  var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next); save("theme", next); applyTheme();
+});
+
+// Quote form: build a pre-filled WhatsApp message in the current language
+document.getElementById("quote-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = e.target, d = T[lang()], det = f.details.value.trim();
+  var msg = d.msg_a + f.name.value.trim() + d.msg_b + f.type.value + "." +
+            (det ? "\n\n" + d.msg_c + det : "") + "\n\n" + d.msg_d;
+  window.open(waLink(msg), "_blank", "noopener");
+});
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+applyLang();
+</script>
+</body>
+</html>
